@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Eventos</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+
+        #mapa {
+            height: 600px;
+        }
+
+        #resultado {
+            padding: 15px;
+            font-size: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Eventos !!!!</h1>
+
+    <div id="mapa"></div>
+
+    <div id="resultado">
+        8 evento(s) encontrado(s)!
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+
+        var latitude = Number("-23.1836");
+        var longitude = Number("-45.8885");
+
+        var mapa = L.map('mapa').setView(
+            [latitude, longitude],
+            13
+        );
+
+        L.tileLayer(
+             'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+         {
+               attribution: 'Tiles &copy; Esri'
+         }
+        ).addTo(mapa);
+
+        L.marker([latitude, longitude])
+            .addTo(mapa)
+            .bindPopup("<b>Local pesquisado</b>")
+            .openPopup();
+
+        
+        L.marker([-23.193, -45.8888])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Batalhas Pokemon</b><br>" +
+                "📍 Univap Centro<br>" +
+                "📂 Jogos<br>" +
+                "📃 Festival onde ocorrem diversas trocas pokemon"
+            );
+        
+        L.marker([-23.1981, -45.8967])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Cinema ao ar livre</b><br>" +
+                "📍 Parque Vicentina Aranha<br>" +
+                "📂 Arte<br>" +
+                "📃 Cinema aberto ao público, com projetor e ambiente agradável"
+            );
+        
+        L.marker([-23.1988, -45.881])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Jogos durante a vida</b><br>" +
+                "📍 CenterVale Shopping<br>" +
+                "📂 Tecnologia<br>" +
+                "📃 Exibição da evolução dos jogos durante os anos e promovendo o lançamento do jogo GTA6"
+            );
+        
+        L.marker([-23.20028, -45.89111])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Aniversário da Aviação</b><br>" +
+                "📍 Parque Santos Dummont<br>" +
+                "📂 Tecnologia<br>" +
+                "📃 Comemoração baseada nas inovações do brasileiro Santos Dummont"
+            );
+        
+        L.marker([-23.1667, -45.8849])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Descobrindo SP</b><br>" +
+                "📍 Parque Municipal Roberto Burle Marx<br>" +
+                "📂 Cultura<br>" +
+                "📃 Barracas de acessórios, música e alimentos baseados nas culturas das diversas cidades de SP"
+            );
+        
+        L.marker([-23.2055, -45.909])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Festival de Fusca</b><br>" +
+                "📍 Colinas Shopping<br>" +
+                "📂 Tecnologia<br>" +
+                "📃 Festival onde pessoas trazem esus diferentes tipos de Fusca, com adaptações para exibí-los"
+            );
+        
+        L.marker([-23.2361, -45.8828])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>KoreanFest</b><br>" +
+                "📍 Shopping Jardim Oriente<br>" +
+                "📂 Cultura<br>" +
+                "📃 Festival de exibição e compartilhamento da cultura coreana"
+            );
+        
+        L.marker([-23.2384, -45.8856])
+            .addTo(mapa)
+            .bindPopup(
+                "<b>Foto Performance</b><br>" +
+                "📍 Vale Sul Shopping<br>" +
+                "📂 Arte<br>" +
+                "📃 Exibição de fotografias tiradas em diferentes eventos da cidade, como shows e apresentações"
+            );
+        
+
+    </script>
+
+</body>
+
+</html>
