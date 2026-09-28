@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Passeios em São José dos Campos</title>
+</head>
+<body>
+    <h1>Passeios em São José dos Campos</h1>
+    <p>Escolha uma região:</p>
+
+    {% for chave, nome in zonas.items() %}
+        <a href="/mapa/{{ chave }}">
+            <button>{{ nome }}</button>
+        </a>
+    {% endfor %}
+</body>
+</html>
