@@ -13,5 +13,24 @@
             <button>{{ nome }}</button>
         </a>
     {% endfor %}
+
+    <hr>
+
+    <h2>Ou busque por um endereço</h2>
+    <p>Digite o nome de uma rua e veja o que tem perto dela.</p>
+
+    <form action="/mapa/perto" method="get">
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua Siqueira Campos" required>
+
+        <br><br>
+
+        <label for="distancia">Distância máxima (km):</label>
+        <input type="number" id="distancia" name="distancia" value="2" min="1" required>
+
+        <br><br>
+
+        <button type="submit">Buscar</button>
+    </form>
 </body>
 </html>
