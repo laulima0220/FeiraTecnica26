@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ titulo }}</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <style>
+        #mapa { height: 600px; }
+    </style>
+</head>
+<body>
+
+    <a href="/">← Voltar</a>
+    <h1>{{ titulo }}</h1>
+    <p>{{ passeios|length }} ponto(s) encontrado(s)</p>
+
+    <div id="mapa"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Lista de pontos que veio do MongoDB
+        var passeios = {{ passeios|tojson }};
+
+        var mapa = L.map('mapa');
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(mapa);
+
+        var pontos = [];
+
+        // Para cada ponto, cria um marcador
+        passeios.forEach(function (p) {
+            var lat = p.local.coordinates[1];
+            var lon = p.local.coordinates[0];
+
+            pontos.push([lat, lon]);
+
+            L.marker([lat, lon])
+                .addTo(mapa)
+                .bindPopup(
+                    "<b>" + p.local.nome + "</b><br>" +
+                    "📍 " + p.endereco + "<br>" +
+                    "📂 " + p.categoria + "<br>" +
+                    "📃 " + p.descricao
+                );
+        });
+
+        // Ajusta o zoom para mostrar todos os pontos
+        if (pontos.length > 0) {
+            mapa.fitBounds(pontos, { padding: [30, 30] });
+        } else {
+            mapa.setView([-23.1896, -45.8841], 12);
+        }
+    </script>
+
+</body>
+</html>
