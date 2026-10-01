@@ -3,34 +3,439 @@
 <head>
     <meta charset="UTF-8">
     <title>Passeios em São José dos Campos</title>
+
+    <style>
+        :root {
+            --creme: #FDF1DB;
+            --bege: #DFD5C6;
+
+            --azul-claro: #A6CBD3;
+            --azul-medio: #4F8FAA;
+
+            --verde-salvia: #96AB88;
+            --verde-musgo: #597B60;
+
+            --verde-claro: #B8C8AD;
+            --verde-escuro: #3F5F47;
+
+            --fundo: #F8F4EC;
+            --branco: #FFFFFF;
+
+            --texto: #2F3D35;
+            --texto-claro: #6F7D73;
+
+            --borda: #D4D8CC;
+
+            --texto-amarelo: rgb(255, 217, 0);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--fundo),
+                    var(--creme)
+                );
+
+            color: var(--texto);
+
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 35px;
+            padding: 28px;
+
+            background: var(--verde-musgo);
+
+            color: var(--branco);
+
+            font-size: 32px;
+
+            box-shadow:
+                0 5px 18px rgba(63, 95, 71, 0.25);
+        }
+
+        h2 {
+            color: var(--verde-musgo);
+
+            margin-top: 0;
+            margin-bottom: 10px;
+
+            text-align: center;
+        }
+
+        .texto-regiao {
+            color: var(--verde-musgo);
+
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .texto-endereco {
+            color: var(--verde-musgo);
+
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.5;
+
+            color: var(--texto);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .area-buscas {
+            max-width: 1100px;
+            margin: 40px auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1px
+                1fr;
+
+            gap: 40px;
+
+            align-items: start;
+        }
+
+        .busca-regiao {
+            padding: 30px;
+
+            text-align: center;
+        }
+
+
+        .botoes-regiao {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+
+        .botoes-regiao button {
+            min-width: 130px;
+        }
+
+        .divisoria {
+            width: 1px;
+
+            height: 90%;
+
+            background: var(--borda);
+
+            justify-self: center;
+        }
+
+        .busca-endereco {
+            padding: 30px;
+
+            text-align: center;
+        }
+
+
+        .busca-endereco form {
+            width: 100%;
+            max-width: 500px;
+
+            margin: 25px auto 0;
+        }
+
+        @media (max-width: 800px) {
+
+            .area-buscas {
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            .divisoria {
+                width: 100%;
+                height: 1px;
+            }
+
+            .busca-regiao,
+            .busca-endereco {
+                padding: 20px 0;
+            }
+        }
+
+        button {
+            padding: 12px 22px;
+            margin: 6px;
+
+            border: none;
+            border-radius: 999px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--azul-claro),
+                    var(--azul-medio)
+                );
+
+            color: var(--branco);
+
+            font-size: 15px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 5px 12px rgba(79, 143, 170, 0.25);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+        }
+
+
+        button:hover {
+            transform: translateY(-3px);
+
+            filter: brightness(1.08);
+
+            box-shadow:
+                0 8px 18px rgba(79, 143, 170, 0.35);
+        }
+
+
+        button:focus-visible {
+            outline: 3px solid var(--verde-salvia);
+            outline-offset: 3px;
+        }
+
+        hr {
+            max-width: 900px;
+
+            margin: 35px auto;
+
+            border: none;
+            border-top: 1px solid var(--borda);
+        }
+
+        form {
+            max-width: 550px;
+            margin: 25px auto 40px;
+            padding: 28px;
+
+            background: var(--branco);
+
+            border: 2px solid var(--borda);
+            border-top: 6px solid var(--azul-medio);
+            border-bottom: 6px solid var(--azul-medio);
+
+            border-radius: 14px;
+
+            text-align: left;
+
+            box-shadow:
+                0 10px 30px rgba(63, 95, 71, 0.12);
+
+            transition:
+                transform 0.4s ease,
+                border-width 0.6s ease,
+                border-color 0.6s ease,
+                box-shadow 0.4s ease;
+        }
+
+        form:hover {
+            transform: scale(1.03);
+
+            border-left-color: var(--verde-claro);
+            border-right-color: var(--verde-claro);
+
+            border-top-color: var(--verde-salvia);
+            border-bottom-color: var(--verde-salvia);
+
+            border-top-width: 2px;
+            border-bottom-width: 2px;
+
+            box-shadow:
+                0 15px 40px rgba(63, 95, 71, 0.18);
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--verde-musgo);
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+
+            background: var(--fundo);
+
+            color: var(--texto);
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        input:focus {
+            border-color: var(--azul-medio);
+
+            box-shadow:
+                0 0 0 3px rgba(79, 143, 170, 0.15);
+        }
+
+        form button {
+            display: block;
+
+            width: 100%;
+
+            margin: 22px 0 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--verde-escuro),
+                    var(--verde-salvia)
+                );
+
+            color: var(--branco);
+
+            box-shadow:
+                0 6px 15px rgba(89, 123, 96, 0.25);
+        }
+
+
+        form button:hover {
+            box-shadow:
+                0 9px 20px rgba(89, 123, 96, 0.35);
+        }
+
+        @media (max-width: 700px) {
+
+            h1 {
+                padding: 22px;
+                font-size: 25px;
+            }
+
+            form {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            hr {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+            button {
+                width: calc(100% - 40px);
+                max-width: 400px;
+            }
+
+            form button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Passeios em São José dos Campos</h1>
-    <p>Escolha uma região:</p>
+    <div class="area-buscas">
 
-    {% for chave, nome in zonas.items() %}
-        <a href="/mapa/{{ chave }}">
-            <button>{{ nome }}</button>
-        </a>
-    {% endfor %}
+        <section class="busca-regiao">
 
-    <hr>
+            <h2 class="texto-regiao">Busque por região</h2>
 
-    <h2>Ou busque por um endereço</h2>
-    <p>Digite o nome de uma rua e veja o que tem perto dela.</p>
+            <p>Escolha uma região:</p>
 
-    <form action="/mapa/perto" method="get">
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua Siqueira Campos" required>
+            <div class="botoes-regiao">
+                {% for chave, nome in zonas.items() %}
+                    <a href="/mapa/{{ chave }}">
+                        <button>{{ nome }}</button>
+                    </a>
+                {% endfor %}
+            </div>
 
-        <br><br>
+        </section>
 
-        <label for="distancia">Distância máxima (km):</label>
-        <input type="number" id="distancia" name="distancia" value="2" min="1" required>
+        <div class="divisoria"></div>
 
-        <br><br>
+        <section class="busca-endereco">
 
-        <button type="submit">Buscar</button>
-    </form>
+            <h2 class="texto-endereco">Busque por um endereço</h2>
+
+            <p>Digite o nome de uma rua e veja o que tem perto dela.</p>
+
+            <form action="/mapa/perto" method="get">
+
+                <label for="endereco">Endereço:</label>
+
+                <input
+                    type="text"
+                    id="endereco"
+                    name="endereco"
+                    placeholder="Ex: Rua Siqueira Campos"
+                    required
+                >
+
+                <br><br>
+
+                <label for="distancia">
+                    Distância máxima (km):
+                </label>
+
+                <input
+                    type="number"
+                    id="distancia"
+                    name="distancia"
+                    value="2"
+                    min="1"
+                    required
+                >
+
+                <button type="submit">
+                    Buscar
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
 </body>
 </html>
